@@ -1,0 +1,16 @@
+---
+- name: Install role packages
+  ansible.builtin.package:
+    name: ceph-common
+
+- name: Land ceph config
+  ansible.builtin.template:
+    src: ceph.conf
+    dest: /etc/ceph/ceph.conf
+    mode: 0644
+
+- name: Land ceph keyring
+  ansible.builtin.copy:
+    src: keyring
+    dest: /etc/ceph/keyring
+    mode: 0600
